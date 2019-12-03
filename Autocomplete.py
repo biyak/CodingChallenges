@@ -11,9 +11,9 @@ def add(root: TrieNode, word: str):
     child_found = False
 
     for letter in word: # for every letter in the word
+        child_found = False
         for child in node.children: # look through the nodes children
                                     # for the next letter
-            child_found = False
             if child.char == letter: # if the letter is in the children nodes
                                      # go to that node and look at IT'S children nodes 
                 answer_string = answer_string + letter
@@ -27,16 +27,42 @@ def add(root: TrieNode, word: str):
             node.children.append(newNode)
             node = newNode
             answer_string = answer_string + letter
-    print(answer_string)
+            child_found = False
+    node.is_word = True
+    #print(answer_string)
 
 root = TrieNode("")
 add(root, "ask")
+add(root, "ass")
 add(root, "assimilate")
 add(root, "assimilater")
+add(root, "asinine")
 add(root, "be")
 add(root, "bear")
 add(root, "bearer")
 add(root, "broke")
 
-def ask(string):
-    print("I sad")
+#you have populated the recently used words,
+#now given 'as', give two options for autocomplete
+
+def autocomplete(root, phrase: str):
+    words = []
+    node = root
+    autoword = ""
+
+    #get the last node of the phrase
+    for letter in phrase:
+        for child in node.children:
+            if child.char == letter:
+                autoword = autoword + letter
+                node = child
+                if autoword == phrase:
+                    options = node.children
+    print(options)
+    for node in options:
+        word = phrase + node.char
+        for child in node.children:
+            word = word + child.char
+            
+                            
+autocomplete(root, "as")

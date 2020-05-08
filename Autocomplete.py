@@ -49,6 +49,7 @@ def autocomplete(root, phrase: str):
     words = []
     node = root
     autoword = ""
+    word = ""
 
     #get the last node of the phrase
     for letter in phrase:
@@ -60,9 +61,22 @@ def autocomplete(root, phrase: str):
                     options = node.children
     print(options)
     for node in options:
-        word = phrase + node.char
-        for child in node.children:
-            word = word + child.char
+        while node is not Null:
+            autoword = autoword + node.char
+            if node.is_word == True:
+                words.append(autoword)
             
+            
+##        word = phrase + node.char
+##        if node.is_word == True:
+##            words.append(word)
+##        
+##            
+##        for child in node.children:
+##            word = word + child.char
+
+def autohelp(node:TrieNode, s:str):
+    s = s + node.char
+    for each 
                             
 autocomplete(root, "as")

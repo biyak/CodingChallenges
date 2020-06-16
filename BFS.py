@@ -42,9 +42,29 @@ def BFS(G, s):
                 visited[n] = True
                 Q.append(n)
 
+#Recursive implementation of BFS
+def recursiveBFS(G, Q, V):
+    if not Q:
+        return
+
+    p = Q.pop()
+    print( str(p) + " ")
+
+    for n in G[p]:
+        if n not in V:
+            V[n] = True
+            Q.append(n)
+            
+    recursiveBFS(G, Q, V)
+
 graph = {0:[1,2], 1: [2], 2: [3, 4], 3: [1,2], 4: [0]}
 
-BFS(graph,0)
+#BFS(graph,0)
+
+Q = [0]
+V = {0:True}
+
+recursiveBFS(graph, Q, V)
 
 
     
